@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">SMS to SMTP</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="pref_enable_smtp_forwarding_key">enable_smtp_forwarding</string>
     <string name="pref_enable_smtp_forwarding_title">SMTP Forwarder</string>
     <string name="pref_enable_smtp_forwarding_summary">Enable forwarding SMS to SMTP</string>
@@ -22,13 +20,8 @@
     <string name="pref_action_test_key">pref_action_test</string>
     <string name="pref_action_test_title">Perform test</string>
     <string name="pref_action_test_summary">Send a test email now</string>
-    <string name="sending_test_mail">Sending test mail…</string>
-    <string name="test_mail_sent">Mail sent.</string>
-    <string name="test_mail_fail">Fail to sent</string>
     <string name="test_mail_subject">[sms2smtp] Test mail</string>
     <string name="test_mail_content">This is a test mail sent from your phone.</string>
-    <string name="mail_send_fail">SMS to SMTP: Email sent.</string>
-    <string name="mail_send_ok">SMS to SMTP: Failed to sent email.</string>
     <string name="email_subject_template">[SMS] From ${from}</string>
     <string name="email_content_template">${message}\n\n-\nFrom: ${from}\nDate: ${date} ${time}\n\nvia SMS to SMTP</string>
 </resources>
