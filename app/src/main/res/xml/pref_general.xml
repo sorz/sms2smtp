@@ -1,0 +1,50 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/pref_enable_smtp_forwarding_key"
+        android:summary="@string/pref_enable_smtp_forwarding_summary"
+        android:title="@string/pref_enable_smtp_forwarding_title" />
+
+    <PreferenceCategory
+        android:title="@string/pref_email_title"
+        android:key="@string/pref_email_key">
+        <EditTextPreference
+            android:inputType="textEmailAddress"
+            android:key="@string/pref_email_from_key"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:title="@string/pref_email_from_title" />
+        <EditTextPreference
+            android:inputType="textEmailAddress"
+            android:key="@string/pref_email_recipient_key"
+            android:singleLine="true"
+            android:title="@string/pref_email_recipient_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/pref_smtp_title"
+        android:key="@string/pref_smtp_key">
+        <EditTextPreference
+            android:inputType="textNoSuggestions"
+            android:key="@string/pref_smtp_server_key"
+            android:singleLine="true"
+            android:title="@string/pref_smtp_server_title" />
+        <EditTextPreference
+            android:inputType="number"
+            android:key="@string/pref_smtp_port_key"
+            android:singleLine="true"
+            android:defaultValue="25"
+            android:title="@string/pref_smtp_port_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/pref_action_title"
+        android:key="@string/pref_action_key">
+        <Preference
+            android:key="@string/pref_action_test_key"
+            android:title="@string/pref_action_test_title"
+            android:summary="@string/pref_action_test_summary" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
