@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                         SmtpService.startSendEmail(getActivity(),
                                 getString(R.string.test_mail_subject),
                                 getString(R.string.test_mail_content));
-
+                        Toast.makeText(getActivity(), R.string.test_mail_sent, Toast.LENGTH_SHORT).show();
                         return true;
                     }
                 });

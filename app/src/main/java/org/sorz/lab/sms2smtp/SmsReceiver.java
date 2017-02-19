@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.telephony.SmsMessage;
+import android.util.Log;
 
 import org.apache.commons.lang3.text.StrSubstitutor;
 
@@ -22,13 +23,17 @@ import java.util.Map;
  */
 
 public class SmsReceiver extends BroadcastReceiver {
+    private static final String TAG = "SmsReceiver";
 
     @Override
     public void onReceive(Context context, Intent intent) {
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        if (!preferences.getBoolean(context.getString(R.string.pref_enable_smtp_forwarding_key), false))
+        if (!preferences.getBoolean(context.getString(R.string.pref_enable_smtp_forwarding_key), false)) {
+            Log.d(TAG, "New SMS ignored according to the global switch.");
             return;
+        }
         SmsMessage messages[] = getMessagesFromIntent(intent);
+        Log.i(TAG, messages.length + " SMS received.");
         for (SmsMessage msg : messages) {
             final Date date = new Date(msg.getTimestampMillis());
             final DateFormat dateFormat = android.text.format.DateFormat.getLongDateFormat(context);
@@ -44,10 +49,8 @@ public class SmsReceiver extends BroadcastReceiver {
 
             final String subject = sub.replace(context.getString(R.string.email_subject_template));
             final String content = sub.replace(context.getString(R.string.email_content_template));
+            Log.d(TAG, "Request sending email, subject: " + subject);
             SmtpService.startSendEmail(context, subject, content, date.getTime());
-
-            System.out.println(subject);
-            System.out.println(content);
         }
     }
 

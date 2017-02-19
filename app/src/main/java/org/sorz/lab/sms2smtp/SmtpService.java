@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.telephony.SmsMessage;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.Date;
@@ -26,8 +27,8 @@ import javax.mail.internet.MimeMessage;
  * helper methods.
  */
 public class SmtpService extends IntentService {
-    // TODO: Rename actions, choose action names that describe tasks that this
-    // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
+    private static final String TAG = "SmtpService";
+
     private static final String ACTION_SEND_EMAIL = "org.sorz.lab.sms2smtp.action.SEND_EMAIL";
 
     private static final String EXTRA_SUBJECT = "org.sorz.lab.sms2smtp.extra.SUBJECT";
@@ -86,7 +87,8 @@ public class SmtpService extends IntentService {
             port = Integer.parseInt(
                     preferences.getString(context.getString(R.string.pref_smtp_port_key), "25"));
         } catch (NumberFormatException e) {
-        // TODO: tell user.
+            // TODO: tell user.
+            Log.w(TAG, "Invalid SMTP port number, use default value (25).", e);
         }
 
         Properties props = new Properties();
@@ -101,8 +103,10 @@ public class SmtpService extends IntentService {
             msg.setSentDate(new Date(timestamp));
             msg.setText(content);
             Transport.send(msg);
+            Log.i(TAG, "Email sent.");
         } catch (MessagingException e) {
-            e.printStackTrace();
+            // TODO: tell user.
+            Log.e(TAG, "Failed to send email.", e);
         }
     }
 
