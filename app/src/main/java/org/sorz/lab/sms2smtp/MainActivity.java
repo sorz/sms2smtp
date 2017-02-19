@@ -6,6 +6,7 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -18,7 +19,7 @@ import android.preference.PreferenceManager;
  * href="http://developer.android.com/guide/topics/ui/settings.html">Settings
  * API Guide</a> for more information on developing a Settings UI.
  */
-public class MainActivity extends PreferenceActivity {
+public class MainActivity extends AppCompatActivity {
     /**
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
